@@ -13,11 +13,14 @@ namespace trabalhoFinal
         int[] menoresDistancias;
         int[] cidadesAnteriores;
         List<int> cidadesNaoVisitadas = new();
-        List<int> anteriores = new();
+        // Difere de cidadesAnteriores porque cidadesAnteriores guarda todas
+        // as cidades visitadas pelo algoritmo para encontrar o menor caminho,
+        // enquanto anterioresCaminho guardará somente as cidades do menor caminho.
+        List<int> anterioresCaminho = new();
 
         public int[] MenoresDistancias { get => menoresDistancias; }
         public int[] CidadesAnteriores { get => cidadesAnteriores; }
-        public List<int> Anteriores { get => anteriores; set => anteriores = value; }
+        public List<int> Anteriores { get => anterioresCaminho; set => anterioresCaminho = value; }
 
         public Dijkstra(int[,] matrizDistancias, int num_cidades, int cidadeOrigem, int cidadeDestino)
         {
@@ -63,7 +66,7 @@ namespace trabalhoFinal
             int cidadeAnterior = cidadesAnteriores[cidadeDestino];
             while (cidadeAnterior != cidadeOrigem)
             {
-                anteriores.Add(cidadeAnterior);
+                anterioresCaminho.Add(cidadeAnterior);
                 cidadeAnterior = cidadesAnteriores[cidadeAnterior];
             }
         }
